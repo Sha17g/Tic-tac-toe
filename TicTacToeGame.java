@@ -78,11 +78,13 @@ public class TicTacToeGame
          if(currentPlayer == 1)
          {
              board.x(row,col);
+             currentPlayer = 2;
          }else
          {
-             board.o(row,col);   
+             board.o(row,col);
+             currentPlayer = 1;
             }
-         
+         System.out.print(board.toString());
     }
     
     /**

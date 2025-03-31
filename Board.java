@@ -64,6 +64,13 @@ public class Board
     public void x(int row, int col)
     {
         //TODO: complete the code so preconditions are validated.
+        for (ArrayList<Cell> originrow : board) {
+            for (Cell cell : originrow){
+                if(cell.toString() != ""){
+                    cell.decreaseLives();
+                }
+            }
+        }
         board.get(row).get(col).x();
     }
     
@@ -85,7 +92,15 @@ public class Board
     public void o(int row, int col)
     {
         //TODO: complete the code so preconditions are validated.
+        for (ArrayList<Cell> originrow : board) {
+            for (Cell cell : originrow){
+                if(cell.toString() != ""){
+                    cell.decreaseLives();
+                }
+            }
+        }        
         board.get(row).get(col).o();
+        
     }
     
     /**
@@ -250,7 +265,11 @@ public class Board
         for (ArrayList<Cell> row : board) {
             rep += "|";
             for (Cell cell : row) {
+                if(cell.toString() != ""){
                 rep += cell.toString() + "|";
+            }else{
+                rep += "  " + "|";
+            }
             }
             rep += rowIndex + "|\n";
             rowIndex++;
@@ -258,4 +277,7 @@ public class Board
         return rep;
     }
 
+    public Cell getCell(int row, int col) {
+        return board.get(row).get(col);
+    }
 }
