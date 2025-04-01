@@ -42,7 +42,6 @@ public class Board
             board.add(new ArrayList<Cell>()); //adds new row of cells
             for (int col = 0; col < 3; col++) {
                 board.get(row).add(new Cell(maxCellLives));
-                //TODO: complete to add a new cell with maxCellLives as the cell lives.
             }
         }
     }
@@ -67,7 +66,7 @@ public class Board
         assert isGameFinished() == false : "The game is finished.";
         assert board.get(row).get(col).toString() == "  " : "The cell is not empty now.";
         assert row >= 0 & row <3 & col >=0 & row <3 : "The row and column must greater or equal to 0 and less than 3.";
-        //TODO: complete the code so preconditions are validated.
+        
         skipTurn();
         board.get(row).get(col).x();
     }
@@ -92,8 +91,9 @@ public class Board
         assert isGameFinished() == false : "The game is finished.";
         assert board.get(row).get(col).toString() == "  " : "The cell is not empty now.";
         assert row >= 0 & row <3 & col >=0 & row <3 : "The row and column must greater or equal to 0 and less than 3.";
-        //TODO: complete the code so preconditions are validated.
+        
         skipTurn();
+        
         board.get(row).get(col).o();
         
     }
@@ -169,6 +169,7 @@ public class Board
     private boolean allTheSameWithCircle(ArrayList<Cell> line) {
         assert line != null: "line can't be null";
         assert line.size() == 3: "line must have exactly 3 cells";
+        
         return  line.get(0).isCircle()
                 && line.get(1).isCircle()
                 && line.get(2).isCircle();
@@ -202,8 +203,8 @@ public class Board
      */
     private ArrayList<Cell> getVerticalLine(int col)
     {
-        //TODO: implement preconditions validation
-        assert col >=0 & col < 3 : "col must ve greater or equal than zero or less than 3.";
+        assert col >=0 & col < 3 : "col must be greater or equal than zero or less than 3.";
+        
         ArrayList<Cell> verticalLine = new ArrayList<Cell>();
         for (ArrayList<Cell> row : board) {
             verticalLine.add(row.get(col));
@@ -221,8 +222,8 @@ public class Board
      */
     private ArrayList<Cell> getHorizontalLine(int row)
     {
-        //TODO: implement preconditions validation
-        assert row >=0 & row < 3 : "col must ve greater or equal than zero or less than 3.";
+        assert row >=0 & row < 3 : "row must be greater or equal than zero or less than 3.";
+        
         ArrayList<Cell> horizontalLine = new ArrayList<Cell>();
         for (Cell cell : board.get(row)) {
             horizontalLine.add(cell);
@@ -278,7 +279,7 @@ public class Board
     
     /*
      * Get cell from the determined rows and columns.
-     * to avoid some unknown problem when we use .get in the TicTactoegame file.
+     * to avoid some unknown problem when we use .get method in the TicTactoegame class.
      */
     public Cell getCell(int row, int col) {
         return board.get(row).get(col);
