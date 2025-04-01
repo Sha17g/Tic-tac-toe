@@ -25,15 +25,12 @@ public class TicTacToeGame
     }
     
     /**
-     * Constructs a new tic-tac-toe game with a specific value as lives per cell.
-     * @param maxLivesPerCell the max lives per cell.
-     * preconditions:
-     * <ul>
-     * <li>maxLivesPerCell must be greater than zero (0).</li>
-     * </ul>
+     * maxLivesPerCell must be greater than zero (0),and better greater than 3 and less or equal than 8.
      */
     public TicTacToeGame(int maxLivesPerCell)
     {
+        assert maxLivesPerCell > 0: "maxLivesPerCell must be greater than 0.";
+        
         board = new Board(maxLivesPerCell);
         currentPlayer = PLAYER_ONE_X;    
     }
@@ -48,6 +45,7 @@ public class TicTacToeGame
     public void skipTurn()
     {
         assert !gameEnded():"The game is ended.";
+        
         if(currentPlayer == 1)
         {
             currentPlayer = 2;
@@ -55,7 +53,7 @@ public class TicTacToeGame
             currentPlayer = 1;
         }
         board.skipTurn();
-        System.out.print(board.toString());
+        System.out.print(toString());
     }
     
     /**
@@ -75,8 +73,9 @@ public class TicTacToeGame
     {
          assert !gameEnded():"The game is ended.";
          assert row >= 0 & row <=3 & col >=0 & col <=3:"The row and col must be greater or equal than 0 and less or equal to 3.";
-         /*Test = board.getCell(row,col).toString(); */
          assert board.getCell(row,col).toString() == "  ":"The cell is not empty now";
+         
+         
          if(currentPlayer == 1)
          {
              board.x(row,col);
@@ -86,7 +85,7 @@ public class TicTacToeGame
              board.o(row,col);
              currentPlayer = 1;
             }
-         System.out.print(board.toString());
+         System.out.print(toString());
     }
     
     /**
@@ -99,6 +98,7 @@ public class TicTacToeGame
         }
         return false;
     }
+    
     /**
      * @return true iff player one, with x, won the game.
      */
@@ -124,7 +124,6 @@ public class TicTacToeGame
 
     }
 
-
     /**
      * Returns a representation of the game.
      * The representation will be as follows:
@@ -139,31 +138,19 @@ public class TicTacToeGame
 
     @Override 
     public String toString() {
-        String thefinal = "";
-        thefinal += board ;
-        thefinal += "---------------";
-        //return the board
-
-        if (gameEnded()) {
-            if (playerOneXWon()) {
-                thefinal += "Player 1 win!";
-                return thefinal;
-            } else {
-                thefinal += "Player 2 win!";
-                return thefinal;
+        if(gameEnded()){
+            if(playerOneXWon()){
+                return "Game finished, player one won!\n" + board.toString();
+            }else{
+                return "Game finished, player two won!\n" + board.toString();
+            }
+        }else{
+            if(currentPlayer == 1){
+                return "Player one (x) is playing.\n" + board.toString();
+            }else{
+                return "Player two (circle) is playing.\n" + board.toString();
             }
         }
-        //justyfy who won
-
-        if (currentPlayer == PLAYER_ONE_X)   {
-            thefinal += "Player 1 is Thinking";
-            return thefinal;
-        }
-        else {
-            thefinal += "Player 2 is Thinking";
-            return thefinal;
-        }
-        //justyfy who is going to drop a piece
     }
 }
 

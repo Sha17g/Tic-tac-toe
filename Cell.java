@@ -49,7 +49,7 @@ public class Cell
      */
     public Cell(int maximumLives)
     {
-        assert maximumLives >= 1 | maximumLives <=8: "Please enter the number greater or equal to 1 and less or equal to 8.";
+        assert maximumLives >= 1 : "Please enter the number greater or equal to 1";
         content = EMPTY;
         lives = maximumLives;
         maxLives = maximumLives;
@@ -117,7 +117,9 @@ public class Cell
      */
     public void decreaseLives()
     {
-        if(content!=EMPTY)
+        assert !isEmpty() : "The cells must be empty.";
+        assert lives > 0 : "The cell is out of lives";
+        if(!isEmpty())
         {
             lives = lives - 1;
             if(lives == 0){
