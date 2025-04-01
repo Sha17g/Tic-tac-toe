@@ -25,6 +25,4 @@ comment7.text=\n\ @return\ true\ iff\ player\ two,\ with\ circle,\ won\ the\ gam
 comment8.params=
 comment8.target=java.lang.String\ toString()
 comment8.text=\n\ Returns\ a\ representation\ of\ the\ game.\n\ The\ representation\ will\ be\ as\ follows\:\n\ <p>\n\ The\ board\ representation\ followed\ by\ one\ of\ these\ lines\:\n\ <ul>\n\ <li>"Player\ one\ (x)\ is\ playing",\ if\ the\ x\ player\ is\ playing.</li>\n\ <li>"Player\ two\ (circle)\ is\ playing",\ if\ the\ circle\ player\ is\ playing.</li>\n\ <li>"Game\ finished,\ player\ <player\ who\ won>\ won\!",\ if\ the\ game\ ended\ with\ a\ win.</li>\n\ </ul>\n
-comment9.params=args
-comment9.target=void\ main(java.lang.String[])
-numComments=10
+numComments=9

@@ -36,6 +36,7 @@ public class Board
      */
     public Board(int maxCellLives)
     {
+        assert maxCellLives > 0 : "maxCellLives must greater than 0";
         board = new ArrayList<ArrayList<Cell>>(); //3 by 3 board
         for (int row = 0; row < 3; row++) {
             board.add(new ArrayList<Cell>()); //adds new row of cells
@@ -63,14 +64,11 @@ public class Board
      */
     public void x(int row, int col)
     {
+        assert isGameFinished() == false : "The game is finished.";
+        assert board.get(row).get(col).toString() == "  " : "The cell is not empty now.";
+        assert row >= 0 & row <3 & col >=0 & row <3 : "The row and column must greater or equal to 0 and less than 3.";
         //TODO: complete the code so preconditions are validated.
-        for (ArrayList<Cell> originrow : board) {
-            for (Cell cell : originrow){
-                if(cell.toString() != ""){
-                    cell.decreaseLives();
-                }
-            }
-        }
+        skipTurn();
         board.get(row).get(col).x();
     }
     
@@ -91,14 +89,11 @@ public class Board
      */
     public void o(int row, int col)
     {
+        assert isGameFinished() == false : "The game is finished.";
+        assert board.get(row).get(col).toString() == "  " : "The cell is not empty now.";
+        assert row >= 0 & row <3 & col >=0 & row <3 : "The row and column must greater or equal to 0 and less than 3.";
         //TODO: complete the code so preconditions are validated.
-        for (ArrayList<Cell> originrow : board) {
-            for (Cell cell : originrow){
-                if(cell.toString() != ""){
-                    cell.decreaseLives();
-                }
-            }
-        }        
+        skipTurn();
         board.get(row).get(col).o();
         
     }
@@ -110,14 +105,16 @@ public class Board
     {
         for (ArrayList<Cell> row : board) {
             for (Cell cell : row) {
-                //TODO: complete
-            }
+               if(cell.toString() != "  "){
+                    cell.decreaseLives();            
+               }
         }
     }
-    
+    }
     /**
      * @return true iff the game was won by x or circle.
      */
+    
     public boolean isGameFinished()
     {
         return xWon() || oWon();
@@ -206,6 +203,7 @@ public class Board
     private ArrayList<Cell> getVerticalLine(int col)
     {
         //TODO: implement preconditions validation
+        assert col >=0 & col < 3 : "col must ve greater or equal than zero or less than 3.";
         ArrayList<Cell> verticalLine = new ArrayList<Cell>();
         for (ArrayList<Cell> row : board) {
             verticalLine.add(row.get(col));
@@ -224,6 +222,7 @@ public class Board
     private ArrayList<Cell> getHorizontalLine(int row)
     {
         //TODO: implement preconditions validation
+        assert row >=0 & row < 3 : "col must ve greater or equal than zero or less than 3.";
         ArrayList<Cell> horizontalLine = new ArrayList<Cell>();
         for (Cell cell : board.get(row)) {
             horizontalLine.add(cell);
@@ -276,7 +275,11 @@ public class Board
         }
         return rep;
     }
-
+    
+    /*
+     * Get cell from the determined rows and columns.
+     * to avoid some unknown problem when we use .get in the TicTactoegame file.
+     */
     public Cell getCell(int row, int col) {
         return board.get(row).get(col);
     }

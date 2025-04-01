@@ -133,7 +133,7 @@ public class Cell
     public String toString()
     {
         if (isEmpty()) {
-            return " ";
+            return "  ";
         } else if (isX()) {
             return "X" + lives;
         } else {

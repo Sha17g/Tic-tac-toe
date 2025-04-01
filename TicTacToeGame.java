@@ -54,6 +54,8 @@ public class TicTacToeGame
         }else{
             currentPlayer = 1;
         }
+        board.skipTurn();
+        System.out.print(board.toString());
     }
     
     /**
@@ -74,7 +76,7 @@ public class TicTacToeGame
          assert !gameEnded():"The game is ended.";
          assert row >= 0 & row <=3 & col >=0 & col <=3:"The row and col must be greater or equal than 0 and less or equal to 3.";
          /*Test = board.getCell(row,col).toString(); */
-         assert board.getCell(row,col).toString() == " ":"The cell is not empty now";
+         assert board.getCell(row,col).toString() == "  ":"The cell is not empty now";
          if(currentPlayer == 1)
          {
              board.x(row,col);
@@ -105,9 +107,7 @@ public class TicTacToeGame
         if(board.xWon()){
             return true;
         }else{
-        //check dia
-        //TODO: implement, remove the next statement.
-        return false;
+            return false;
         }
     }
     
@@ -116,12 +116,10 @@ public class TicTacToeGame
      */
     public boolean playerTwoCircleWon()
     {
-           if(board.oWon()){
+        if(board.oWon()){
             return true;
         }else{
-        //check dia
-        //TODO: implement, remove the next statement.
-        return false;
+            return false;
         }
 
     }
@@ -166,10 +164,6 @@ public class TicTacToeGame
             return thefinal;
         }
         //justyfy who is going to drop a piece
-    }
-
-    public static void main(String[] args) {
-        new TicTacToeGame(){};
     }
 }
 
