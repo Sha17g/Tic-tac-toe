@@ -37,6 +37,7 @@ public class Board
     public Board(int maxCellLives)
     {
         assert maxCellLives > 0 : "maxCellLives must greater than 0";
+        assert maxCellLives <= 9 : "maxCellLives must less or equal to 9";
         board = new ArrayList<ArrayList<Cell>>(); //3 by 3 board
         for (int row = 0; row < 3; row++) {
             board.add(new ArrayList<Cell>()); //adds new row of cells
@@ -89,7 +90,7 @@ public class Board
     public void o(int row, int col)
     {
         assert isGameFinished() == false : "The game is finished.";
-        assert board.get(row).get(col).toString() == "  " : "The cell is not empty now.";
+        assert board.get(row).get(col).toString().equals("  ") : "The cell is not empty now.";
         assert row >= 0 & row <3 & col >=0 & row <3 : "The row and column must greater or equal to 0 and less than 3.";
         
         skipTurn();

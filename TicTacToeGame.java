@@ -25,12 +25,12 @@ public class TicTacToeGame
     }
     
     /**
-     * maxLivesPerCell must be greater than zero (0),and better greater than 3 and less or equal than 8.
+     * maxLivesPerCell must be greater than zero (0),and better greater than 3 and less or equal than 9.
      */
     public TicTacToeGame(int maxLivesPerCell)
     {
         assert maxLivesPerCell > 0: "maxLivesPerCell must be greater than 0.";
-        
+        assert maxLivesPerCell <= 9: "maxLivesPerCell must be less or equal to 9.";
         board = new Board(maxLivesPerCell);
         currentPlayer = PLAYER_ONE_X;    
     }
@@ -73,7 +73,7 @@ public class TicTacToeGame
     {
          assert !gameEnded():"The game is ended.";
          assert row >= 0 & row <=3 & col >=0 & col <=3:"The row and col must be greater or equal than 0 and less or equal to 3.";
-         assert board.getCell(row,col).toString() == "  ":"The cell is not empty now";
+         assert board.getCell(row,col).toString().equals("  "):"The cell is not empty now";
          
          
          if(currentPlayer == 1)
