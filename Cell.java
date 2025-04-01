@@ -50,6 +50,7 @@ public class Cell
     public Cell(int maximumLives)
     {
         assert maximumLives >= 1 : "Please enter the number greater or equal to 1";
+        assert maximumLives <= 9 : "Please enter the number less or equal to 9";
         content = EMPTY;
         lives = maximumLives;
         maxLives = maximumLives;
